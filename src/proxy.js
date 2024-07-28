@@ -1,7 +1,6 @@
 const request = require('request');
 const pick = require('lodash').pick;
 const shouldCompress = require('./shouldCompress');
-//const redirect = require('./redirect');
 const compress = require('./compress');
 const bypass = require('./bypass');
 const copyHeaders = require('./copyHeaders');
