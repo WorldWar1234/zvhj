@@ -4,7 +4,6 @@ const compress = require('./compress');
 function handler(req, res) {
   // Logic to generate content or fetch from a data source
   // Replace this placeholder with your actual content generation logic
-  const content = generateContent(req);
 
   if (shouldCompress(req)) {
     compress(req, res, buffer);
