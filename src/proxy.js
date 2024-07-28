@@ -40,4 +40,4 @@ function myHandler(req, res) {
   );
 }
 
-module.exports = proxy;
+module.exports = myHandler;
