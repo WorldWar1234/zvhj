@@ -7,9 +7,9 @@ function handler(req, res) {
   const content = generateContent(req);
 
   if (shouldCompress(req)) {
-    compress(req, res, content);
+    compress(req, res, buffer);
   } else {
-    res.send(content);
+    bypass(req, res, buffer);
   }
 }
 
