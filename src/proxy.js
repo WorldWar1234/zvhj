@@ -5,7 +5,7 @@ const compress = require('./compress');
 const bypass = require('./bypass');
 const copyHeaders = require('./copyHeaders');
 
-function myHandler(req, res) {
+function (req, res) {
   request.get(
     req.params.url,
     {
@@ -40,4 +40,4 @@ function myHandler(req, res) {
   );
 }
 
-module.exports = myHandler;
+module.exports = "";
