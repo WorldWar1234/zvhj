@@ -11,10 +11,8 @@ function proxy(req, res) {
     req.params.url,
     {
       headers: {
-        ...pick(req.headers, ['cookie', 'dnt', 'referer']),
-        'user-agent': 'Bandwidth-Hero Compressor',
-        'x-forwarded-for': req.headers['x-forwarded-for'] || req.ip,
-        via: '1.1 bandwidth-hero'
+        ...pick(req.headers,
+        'x-forwarded-for': req.ip,
       },
       timeout: 10000,
       maxRedirects: 5,
