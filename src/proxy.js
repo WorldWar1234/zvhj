@@ -11,6 +11,7 @@ function proxy(req, res) {
     {
       headers: {
         ...pick(req.headers, ['dnt']),
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
         'x-forwarded-for': req.ip,
       },
       timeout: 10000,
