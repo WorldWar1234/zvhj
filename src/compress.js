@@ -13,7 +13,7 @@ function compress(req, res, input) {
     })
     .toBuffer((err, output, info) => {
       if (err || !info || res.headersSent) {
-        return redirect(req, res);
+        bypass(req, res, buffer);
       }
 
       res.setHeader('content-type', `image/${format}`);
