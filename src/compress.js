@@ -1,5 +1,5 @@
 const sharp = require('sharp');
-const redirect = require('./redirect');
+const bypass = require('./bypass');
 
 function compress(req, res, input) {
   const format = req.params.webp ? 'webp' : 'jpeg';
