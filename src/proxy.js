@@ -10,7 +10,7 @@ function proxy(req, res) {
     req.params.url,
     {
       headers: {
-        ...pick(req.headers,
+        ...pick(req.headers, ['dnt']),
         'x-forwarded-for': req.ip,
       },
       timeout: 10000,
