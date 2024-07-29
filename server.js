@@ -2,6 +2,8 @@ const Fastify = require('fastify');
 const authenticate = require('./src/authenticate');
 const params = require('./src/params');
 const proxy = require('./src/proxy');
+const handler = require('./src/proxy').handler;
+
 
 const app = Fastify({ logger: true });
 
