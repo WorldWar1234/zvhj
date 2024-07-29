@@ -2,12 +2,14 @@ const shouldCompress = require('./shouldCompress');
 const compress = require('./compress');
 const bypass = require('./bypass');
 
-function handler(req, res) {
-  
-  if (shouldCompress(req)) {
-    compress(req, res, buffer);
+function handler(request, reply) {
+  // Logic to generate content or fetch from a data source
+  // Replace this placeholder with your actual content generation logic
+
+  if (shouldCompress(request)) {
+    compress(request, reply, buffer);
   } else {
-    bypass(req, res, buffer);
+    bypass(request, reply, buffer);
   }
 }
 
