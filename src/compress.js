@@ -1,27 +1,28 @@
 const sharp = require('sharp');
 const bypass = require('./bypass');
 
-function compress(req, res, input) {
-  const format = req.params.webp ? 'webp' : 'jpeg';
+async function compress(request, reply, input) {
+  try {
+    const format = request.params.webp ? 'webp' : 'jpeg';
 
-  sharp(input)
-    .grayscale(req.params.grayscale)
-    .toFormat(format, {
-      quality: req.params.quality,
-      progressive: true,
-      optimizeScans: true
-    })
-    .toBuffer((err, output, info) => {
-      if (err || !info || res.headersSent) {
-        bypass(req, res, buffer);
-      }
+    const { data, info } = await sharp(input)
+      .grayscale(request.params.grayscale)
+      .toFormat(format, {
+        quality: request.params.quality,
+        progressive: true,
+        optimizeScans: true
+      })
+      .toBuffer();
 
-      res.setHeader('content-type', `image/${format}`);
-      res.setHeader('content-length', info.size);
-      res.setHeader('x-original-size', req.params.originSize);
-      res.setHeader('x-bytes-saved', req.params.originSize - info.size);
-      res.status(200).send(output);
-    });
+    reply.header('content-type', `image/${format}`);
+    reply.header('content-length', info.size);
+    reply.header('x-original-size', request.params.originSize);
+    reply.header('x-bytes-saved', request.params.originSize - info.size);
+    reply.status(200).send(data);
+  } catch (err) {
+    console.error('Error compressing image:', err);
+    bypass(request, reply, input);
+  }
 }
 
 module.exports = compress;
