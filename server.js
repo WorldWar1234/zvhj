@@ -7,7 +7,9 @@ const proxy = require('./src/proxy');
 
 const app = Fastify({ logger: true });
 
-app.get('/', authenticate, params, proxy);
+app.get('/', {
+  handler: [authenticate, params, proxy] // List middleware in an array
+});
 app.get('/favicon.ico', (_, reply) => reply.code(204).send());
 
 app.listen({ port: process.env.PORT || 8080 }, (err, address) => {
